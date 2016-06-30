@@ -49,8 +49,8 @@ function startProcess() {
   var feed = window.reddit_feed.data;
   for (var i = 0; i < feed.length; i++) {
     var article = feed[i];
-    console.log(article);
 
+    // Create elements with the desired properties and append them to their parent after they're created
     var column = document.createElement("div");
     column.className = "col-sm-12 col-md-4";
 
@@ -67,6 +67,7 @@ function startProcess() {
     link.appendChild(thumbnail);
 
     var image = document.createElement("img");
+    // If there is no image, do not include a src attribute or else an error will occur
     if (article.thumbnail.indexOf("http") != -1) {
       image.src = article.thumbnail;
     }
@@ -85,6 +86,7 @@ function startProcess() {
 
     var body = document.createElement("div");
     body.className = "body";
+    // If there is no body given for the post then set the body to "No Body"
     if (article.body) {
       body.innerHTML = article.body;
     } else {
@@ -97,20 +99,6 @@ function startProcess() {
     time.innerHTML = moment.unix(article.created);
     link.appendChild(time);
 
-
     document.getElementById("main").appendChild(column);
-
-
-    // Create element in memory
-    /*var container = document.createElement("div");
-    var title = document.createElement("div");
-
-    // Assign values to element
-    title.innerHTML = article.title;
-
-    // Nest elements inside each other
-    container.appendChild(title);
-
-    document.getElementById("main").appendChild(container);*/
   }
 }
